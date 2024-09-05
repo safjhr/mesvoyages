@@ -4,8 +4,9 @@ namespace App\Entity;
 
 use App\Repository\EnvironnementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Collection;
+
 
 #[ORM\Entity(repositoryClass: EnvironnementRepository::class)]
 class Environnement
@@ -17,9 +18,15 @@ class Environnement
 
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $Environnement = null;
+    
+    #[ORM\ManyToMany(targetEntity: Environnement::class)]
+    private Collection $environnements;
+     
+    public function __construct() {
+       $this->environnements = new ArrayCollection();
+        
+    }
+    
 
     public function getId(): ?int
     {
@@ -50,12 +57,7 @@ class Environnement
         return $this;
     }
     
-    #[ORM\ManyToMany(targetEntity: Environnement::class)]
-    private Collection $environnement;
-    public function __construct() {
-       $this->environnement = new ArrayCollection();
-        
-    }
+   
 
     public function getEnvironnements(): Collection 
     {
@@ -77,4 +79,6 @@ class Environnement
 
         return $this;
     }
+    
+   
 }

@@ -42,7 +42,8 @@ class Visite
      */
     #[ORM\ManyToMany(targetEntity: Environnement::class)]
     private Collection $environnements;
-
+    
+ 
     public function __construct()
     {
         $this->environnements = new ArrayCollection();
@@ -163,10 +164,10 @@ class Visite
         return $this;
     }
 
-    public function removeEnvironnement(Environnement $environnement): static
+        public function removeEnvironnement(Environnement $environnement): static
     {
         $this->environnements->removeElement($environnement);
 
         return $this;
     }
-}
+}    
