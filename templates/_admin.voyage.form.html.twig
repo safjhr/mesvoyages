@@ -24,11 +24,16 @@
         </div>
         <div class="col">
             <!--emplacement image-->
+            {% if visite.imagename %}
+                <img src="{{ app.request.getBasePath()~vich_uploader_asset(visite, 'imageFile') }}"
+                     class="card-img-top" style="width:100%;height:auto;">
+            {% endif %}
+            
         </div>
         <div class="row">
-            <di class="col">
+            <div class="col">
                 {{ form_row(formvisite.avis) }}
-        </div>
+            </div>
     </div>                                             
     {{ form_end(formvisite) }}
 {% endblock %}
