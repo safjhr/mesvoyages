@@ -25,7 +25,7 @@ class VisiteType extends AbstractType
             ->add('note')
             ->add('avis')
             ->add('tempmin', null, [
-                'label' =>'t° max'
+                'label' =>'t° min'
             ])
             ->add('tempmax', null, [
                 'label' =>'t° max'
