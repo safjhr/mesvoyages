@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 class VisiteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -51,7 +52,13 @@ class VisiteType extends AbstractType
                 'data' => isset($options['data']) &&
                 $options['data']->getDateCreation() != null ? $options['data']->getDateCreation()  : new \DateTime('now'),
                 'label' => 'Date'
-            ])    
+            ])  
+            ->add('note', IntegerType::class, [
+                'attr' =>[
+                    'min' => 0,
+                    'max' => 20
+                ]
+            ])
         ;
     }
 
